@@ -3406,6 +3406,11 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.npm.taobao.org/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
+eslint-config-tg-config@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/eslint-config-tg-config/-/eslint-config-tg-config-1.0.5.tgz#8473a552d4cf1ee9de324bc76de4be33a14c572c"
+  integrity sha512-2eCKxBg9QLf1ExaHwnMkb/BqpR5Oav8ix3etAN528e0BBQUOYKBu6/X3KTQEf4P9gFyzdI3w1MvA3EFG7bYvEQ==
+
 eslint-loader@^2.2.1:
   version "2.2.1"
   resolved "https://registry.nlark.com/eslint-loader/download/eslint-loader-2.2.1.tgz#28b9c12da54057af0845e2a6112701a2f6bf8337"
