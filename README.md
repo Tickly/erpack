@@ -1,7 +1,7 @@
 # erpack
 
-## yarn build
-打包代码
+基于 `ant-design-vue` 做的二次封装，只为更好使用。
 
-## yarn docs:dev
-启动文档
+## yarn build
+
+打包代码
