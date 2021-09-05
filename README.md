@@ -1,24 +1,7 @@
 # erpack
 
-## Project setup
-```
-yarn install
-```
+## yarn build
+打包代码
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## yarn docs:dev
+启动文档

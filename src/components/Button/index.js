@@ -1,7 +1,7 @@
-import Vue from 'vue'
 import { Button } from 'ant-design-vue'
 
-export default Vue.extend({
+export default {
+  name: 'ErpButton',
   props: {
     type: String
   },
@@ -12,4 +12,4 @@ export default Vue.extend({
       }
     }, this.$slots.default)
   }
-})
+}

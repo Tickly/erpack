@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib src/index.js",
     "lint": "vue-cli-service lint",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
+  "main": "dist/erpack.common.js",
   "dependencies": {
     "ant-design-vue": "^1.7.8",
     "core-js": "^3.6.5",
