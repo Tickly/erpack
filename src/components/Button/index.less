@@ -1,6 +1,16 @@
-@success-color:'#198754';
+@success-color: #198754;
+@danger-color: #dc3545;
 
-.ant-btn-success{
-  background-color: @success-color;
-  border-color: @success-color;
+.ant-btn (@color) {
+  color: #fff;
+  background-color: @color;
+  border-color: @color;
+}
+
+.ant-btn-success {
+  .ant-btn(@success-color);
+}
+
+.ant-btn-danger {
+  .ant-btn(@danger-color);
 }
