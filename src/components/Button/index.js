@@ -1,4 +1,5 @@
 import { Button } from 'ant-design-vue'
+import './index.less'
 
 export default {
   name: 'ErpButton',
