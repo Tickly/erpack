@@ -1,7 +1,7 @@
 module.exports = {
   configureWebpack: {
-    // externals: {
-    //   'ant-design-vue': 'ant-design-vue',
-    // },
+    externals: {
+      'ant-design-vue': 'commonjs2 ant-design-vue'
+    },
   },
 }
