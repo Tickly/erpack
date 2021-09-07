@@ -6,9 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib src/index.js",
     "lint": "vue-cli-service lint",
-    "inspect": "vue-cli-service --mode production inspect",
+    "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "inspect": "vue-cli-service --mode production inspect"
   },
   "main": "dist/erpack.common.js",
   "dependencies": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",

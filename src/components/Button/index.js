@@ -1,8 +1,9 @@
 import { Button, Popconfirm } from 'ant-design-vue'
+import { prefixName } from '../utils'
 import './index.less'
 
 export default {
-  name: 'ErpButton',
+  name: prefixName('Button'),
   props: {
     /**
      * 在原有的type基础上，额外扩展了几个值。
