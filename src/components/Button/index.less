@@ -1,16 +1,27 @@
+@secondary-color: #6c757d;
 @success-color: #198754;
-@danger-color: #dc3545;
+@warning-color: #ffca2c;
 
-.ant-btn (@color) {
-  color: #fff;
+.ant-btn (@color,@f-color : #fff) {
+  color: @f-color;
   background-color: @color;
   border-color: @color;
+
+  &:hover {
+    color: @f-color;
+    background-color: lighten(@color, 10%);
+    border-color: lighten(@color, 10%);
+  }
+}
+
+.ant-btn-secondary {
+  .ant-btn(@secondary-color);
 }
 
 .ant-btn-success {
   .ant-btn(@success-color);
 }
 
-.ant-btn-danger {
-  .ant-btn(@danger-color);
+.ant-btn-warning {
+  .ant-btn(@warning-color, #000);
 }
