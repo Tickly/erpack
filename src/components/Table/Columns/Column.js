@@ -1,9 +1,19 @@
 export default class Column {
   constructor (opt) {
-    const { dataIndex, title } = opt
+    const {
+      key,
+      dataIndex, title,
+      width,
+      customRender,
+      ellipsis,
+    } = opt
 
+    this.key = key
     this.dataIndex = dataIndex
     this.title = title
+    this.width = width
+    this.customRender = customRender
+    this.ellipsis = ellipsis
   }
 
   /**
@@ -19,9 +29,12 @@ export default class Column {
 
   to () {
     return {
+      key: this.key,
       dataIndex: this.dataIndex,
       title: this.title,
-      customRender: this.render,
+      width: this.width,
+      customRender: this.customRender || this.render,
+      ellipsis: this.ellipsis
     }
   }
 }

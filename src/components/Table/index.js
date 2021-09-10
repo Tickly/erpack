@@ -5,7 +5,10 @@ import { getColumn } from './Columns/Factory'
 export default {
   name: prefixName('Table'),
   props: {
-    columns: Array,
+    columns: {
+      type: Array,
+      default: () => []
+    }
   },
   computed: {
     tableColumns () {
@@ -19,7 +22,7 @@ export default {
       props: {
         ...this.$attrs,
         columns: this.tableColumns,
-      }
+      },
     })
   }
 }
