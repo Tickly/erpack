@@ -9,7 +9,7 @@ export default class SerialColumn extends Column {
     })
   }
 
-  render (value, row, index) {
+  render (h, value, row, index) {
     return index + 1
   }
 }

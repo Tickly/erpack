@@ -1,8 +1,14 @@
-import moment from 'moment'
 import Column from './Column'
+import moment from 'moment'
 
 export default class DateColumn extends Column {
-  render (value) {
-    return moment(value).format('YYYY-MM-DD')
+  constructor (opt) {
+    super(opt)
+    const { format = 'YYYY-MM-DD HH:mm:ss' } = opt
+    this.format = format
+  }
+
+  render (h, value) {
+    return moment(value).format(this.format)
   }
 }

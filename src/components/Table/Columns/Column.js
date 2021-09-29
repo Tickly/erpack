@@ -1,3 +1,8 @@
+/**
+ * todo
+ * 所有的文本展示列都继承TextColumn
+ * 这样就能都带click事件
+ */
 export default class Column {
   constructor (opt) {
     const {
@@ -18,22 +23,27 @@ export default class Column {
 
   /**
    * 
+   * @param {Function} h 渲染函数
    * @param {*} value 当前单元格的值
-   * @param {*} row 当前行的数据
-   * @param {*} index 当前行的index
+   * @param {Object} row 当前行的数据
+   * @param {Number} index 当前行的index
    * @returns 
    */
-  render (value, row, index) {
+  render (h, value, row, index) {
     return value
   }
 
-  to () {
+  to (h) {
     return {
       key: this.key,
       dataIndex: this.dataIndex,
       title: this.title,
       width: this.width,
-      customRender: this.customRender || this.render,
+      customRender: (text, record, index) => {
+        return this.customRender
+          ? this.customRender(text, record)
+          : this.render(h, text, record, index)
+      },
       ellipsis: this.ellipsis
     }
   }

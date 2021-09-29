@@ -1,7 +1,14 @@
 import Column from './Column'
+import numeral from 'numeral'
 
 export default class NumberColumn extends Column {
-  render (value) {
-    return `￥ ${value}`
+  constructor (opt) {
+    super(opt)
+    const { format = '0,0.00' } = opt
+    this.format = format
+  }
+
+  render (h, value) {
+    return numeral(value).format(this.format)
   }
 }
