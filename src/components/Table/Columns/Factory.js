@@ -1,15 +1,17 @@
-import Column from './Column'
+import TextColumn from './TextColumn'
 import DateColumn from './DateColumn'
 import NumberColumn from './NumberColumn'
 import SerialColumn from './SerialColumn'
 import ActionColumn from './ActionColumn'
+import TagColumn from './TagColumn'
 
 const ColumnsMap = {
-  text: Column,
+  text: TextColumn,
   date: DateColumn,
   number: NumberColumn,
   serial: SerialColumn,
   action: ActionColumn,
+  tag: TagColumn,
 }
 
 export const registerColumn = (type, column) => {

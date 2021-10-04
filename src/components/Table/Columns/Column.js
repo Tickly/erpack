@@ -15,7 +15,8 @@ export default class Column {
 
     this.key = key
     this.dataIndex = dataIndex
-    this.title = title
+    // 如果没有设置title，把属性放上去
+    this.title = title || dataIndex
     this.width = width
     this.customRender = customRender
     this.ellipsis = ellipsis
