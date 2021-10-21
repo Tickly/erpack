@@ -1,3 +1,9 @@
+/**
+ * 表格组件
+ * 
+ * todo 需要支持自动合并单元格
+ */
+
 import { Table } from 'ant-design-vue'
 import { prefixName } from '../utils'
 import { getColumn } from './Columns/Factory'
