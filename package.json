@@ -5,8 +5,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib src/index.js",
     "lint": "vue-cli-service lint",
-    "docs:build": "vuepress build docs",
-    "docs:dev": "vuepress dev docs",
     "inspect": "vue-cli-service --mode production inspect"
   },
   "main": "dist/erpack.common.js",
