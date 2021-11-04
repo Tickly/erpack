@@ -18,7 +18,8 @@ export const registerColumn = (type, column) => {
 
 }
 
-export const getColumn = (col) => {
+export const getColumn = (col, model) => {
+  // 先将字符串转成对象
   if (typeof col === typeof '') {
     if (col === '#') {
       col = {
@@ -32,8 +33,23 @@ export const getColumn = (col) => {
   }
 
   const {
-    type = 'text'
+    type = 'text',
+    dataIndex,
+    title
   } = col
+
+  // 如果没有设置title，需要从别的地方获取。
+  if (title === undefined) {
+    // 先用字段名充当
+    col.title = dataIndex
+    // 如果指定了模型
+    if (model) {
+      const property = model.getProperty(dataIndex)
+      if (property) {
+        col.title = property.label
+      }
+    }
+  }
 
   if (ColumnsMap[type]) {
     return new ColumnsMap[type](col)

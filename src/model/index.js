@@ -1,7 +1,13 @@
 import Property from './Properties/Property'
-import NumberProperty from './Properties/NumberProperty'
 
 export default class Model {
+
+  constructor (data) {
+    for (const key in data) {
+      Reflect.set(this, key, Reflect.get(data, key))
+    }
+  }
+
   /**
    * 
    * @returns {Object.<string, Property>} properties

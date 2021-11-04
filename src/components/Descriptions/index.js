@@ -1,4 +1,5 @@
 import { Descriptions } from 'ant-design-vue'
+import Model from '../../model'
 import { prefixName } from '../utils'
 
 export default {
@@ -11,13 +12,32 @@ export default {
     },
     items: {
       type: Array,
+      default: () => []
     },
     form: Object,
   },
   computed: {
     obj_items () {
       const map = v => {
-        if (typeof v === typeof '') v = { label: v, prop: v }
+        // 纯字符
+        if (typeof v === typeof '') v = { prop: v }
+
+        const { prop, label } = v
+
+        // 如果没有手动指定label，就自动设置
+        if (label === undefined) {
+          // 先用prop做label
+          v.label = prop
+
+          // 如果是模型实例，且定义了属性
+          if (this.form instanceof Model) {
+            const property = this.form.getProperty(prop)
+            if (property) {
+              v.label = property.label
+            }
+          }
+        }
+
         return v
       }
       return this.items.map(map)
@@ -27,14 +47,15 @@ export default {
     renderItems (h) {
       const { form } = this
 
-      const r = ({ label, prop }) => h(Descriptions.Item, {
+      const r = ({ label, prop, span }) => h(Descriptions.Item, {
         props: {
-          label: label,
+          label,
+          span
         }
       }, Reflect.get(form, prop))
 
       return this.obj_items.map(r)
-    }
+    },
   },
   render (h) {
     return h(Descriptions, {

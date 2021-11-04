@@ -7,7 +7,8 @@ export default class Column {
   constructor (opt) {
     const {
       key,
-      dataIndex, title,
+      dataIndex,
+      title,
       width,
       customRender,
       ellipsis,
@@ -15,8 +16,7 @@ export default class Column {
 
     this.key = key
     this.dataIndex = dataIndex
-    // 如果没有设置title，把属性放上去
-    this.title = title || dataIndex
+    this.title = title
     this.width = width
     this.customRender = customRender
     this.ellipsis = ellipsis

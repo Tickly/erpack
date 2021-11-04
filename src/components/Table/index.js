@@ -5,6 +5,7 @@
  */
 
 import { Table } from 'ant-design-vue'
+import Model from '../../model'
 import { prefixName } from '../utils'
 import { getColumn } from './Columns/Factory'
 import './style.less'
@@ -12,6 +13,20 @@ import './style.less'
 export default {
   name: prefixName('Table'),
   props: {
+    /**
+     * 模型
+     * 如果传了模型，就必须是基于Model定义。
+     */
+    modelClass: {
+      validator (value) {
+        if (value instanceof Function) {
+          const model = new value()
+          if (model instanceof Model) return true
+        }
+
+        return false
+      }
+    },
     columns: {
       type: Array,
       default: () => []
@@ -19,8 +34,14 @@ export default {
   },
   computed: {
     tableColumns () {
+
+      let model = null
+      if (this.modelClass) {
+        model = new this.modelClass()
+      }
+
       return this.columns
-        .map(getColumn)
+        .map(col => getColumn(col, model))
         .map(col => col.to(this.$createElement))
     }
   },
