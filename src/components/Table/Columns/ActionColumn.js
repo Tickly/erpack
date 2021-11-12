@@ -1,6 +1,7 @@
 import Column from './Column'
 import { Divider, Dropdown, Icon, Menu, Modal } from 'ant-design-vue'
 import Button from '../../Button'
+import ActionButtons from '../../ActionButtons'
 
 export default class ActionColumn extends Column {
   constructor(opt) {
@@ -8,6 +9,7 @@ export default class ActionColumn extends Column {
       title = '操作',
       buttons = [],
       limit = 3,
+      showDivider = true,
       ...other
     } = opt
 
@@ -15,22 +17,43 @@ export default class ActionColumn extends Column {
 
     this.buttons = buttons
     this.limit = limit
+    this.showDivider = showDivider
+  }
+
+  getButtons(row, index) {
+    return this.buttons.map(button => {
+      const { click, visible, ...other } = button
+      if (click) {
+        other.click = () => click(row, index)
+      }
+      if (visible) {
+        other.visible = () => visible(row, index)
+      }
+
+      return other
+    })
   }
 
   render(h, value, row, index) {
-    return h(
-      'div',
-      { class: 'erp-table-action-column' },
-      [
-        this.renderButtons(h, row, index),
-      ]
-    )
+    const { limit, showDivider } = this
+
+    return h(ActionButtons, {
+      key: row.id,
+      props: {
+        limit,
+        buttons: this.getButtons(row, index),
+        showDivider,
+      }
+    })
+    // return h(
+    //   'div',
+    //   { class: 'erp-table-action-column' },
+    //   [
+    //     this.renderButtons(h, row, index),
+    //   ]
+    // )
   }
 
-  /**
-   * 
-   * @param {Array} buttons 
-   */
   renderMoreButtons(h, buttons) {
     return h(Dropdown, [
       h(Button,
@@ -98,18 +121,23 @@ export default class ActionColumn extends Column {
     })
 
     //  构造渲染列表
-    const renders = []
+    let renders = []
 
     for (const button of normalButtons) {
       renders.push(this.renderButton(h, button, row, index))
-      renders.push(this.renderDivider(h))
     }
     if (moreButtons.length) {
       renders.push(this.renderMoreButtons(h, moreButtons))
-      renders.push(this.renderDivider(h))
     }
 
-    renders.pop()
+    // 如果需要显示分割线
+    if (this.showDivider) {
+      renders = renders.reduce((list, render) => {
+        list.push(render, this.renderDivider(h))
+        return list
+      }, [])
+      renders.pop()
+    }
 
     return renders
   }
