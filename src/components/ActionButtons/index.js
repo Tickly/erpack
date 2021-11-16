@@ -6,14 +6,29 @@ import './style.less'
 export default {
   name: prefixName('ActionButtons'),
   props: {
+    /**
+     * 设定一个数值，当按钮超过该数量之后，自动收到【更多】下拉里面。
+     * 默认为0，表示全部展开。
+     */
     limit: {
       type: Number,
       default: 0
     },
+    /**
+     * 按钮配置项组成的数组
+     * 按钮配置项为对象，包含以下属性
+     * text [String] 按钮文字
+     * visible [Boolean,Function] 可直接传true，false，也可传入一个function，该function要返回一个Boolean结果，为True时按钮可见。
+     * click [Function] 单击事件
+     * confirm [String] 设定一段文本，点击按钮后，会弹框二次确认，确认之后才会触发click事件。
+     */
     buttons: {
       type: Array,
       default: () => []
     },
+    /**
+     * 是否显示分割线
+     */
     showDivider: {
       type: Boolean,
       default: true,
