@@ -6,15 +6,21 @@ import './style.less'
 export default {
   name: prefixName('ActionButtons'),
   props: {
-    limit: Number,
-    buttons: Array,
+    limit: {
+      type: Number,
+      default: 0
+    },
+    buttons: {
+      type: Array,
+      default: () => []
+    },
     showDivider: {
       type: Boolean,
       default: true,
     }
   },
   methods: {
-    renderButtons(h) {
+    renderButtons (h) {
       let limit = this.limit
 
       // 计算出当前需要展示的按钮
@@ -26,8 +32,15 @@ export default {
 
       // 先提取出当前需要渲染的按钮
       for (const button of this.buttons) {
-        if (button.visible) {
-          if (button.visible() === false) continue
+
+        // 如果设置了visible
+        if (Reflect.has(button, 'visible')) {
+          const { visible } = button
+          if (visible === false) continue
+
+          if (visible instanceof Function) {
+            if (visible() === false) continue
+          }
         }
         visibleButtons.push(button)
       }
@@ -38,9 +51,8 @@ export default {
        * 假如limit=3，刚好渲染的按钮数量=3，那更多是不需要的
        * 假如渲染按钮=4，那么，只会渲染前面两个按钮，后面的都在更多
        */
-      if (visibleButtons.length > limit) limit--
       visibleButtons.forEach((button, index) => {
-        if (index < limit) normalButtons.push(button)
+        if (limit === 0 || index < limit - 1) normalButtons.push(button)
         else moreButtons.push(button)
       })
 
@@ -65,7 +77,7 @@ export default {
 
       return renders
     },
-    renderButton(h, button) {
+    renderButton (h, button) {
       return h(Button, {
         props: {
           type: 'link',
@@ -81,7 +93,7 @@ export default {
         }
       }, button.text)
     },
-    renderMoreButtons(h, buttons) {
+    renderMoreButtons (h, buttons) {
       return h(Dropdown, [
         h(Button,
           { props: { type: 'link', size: 'small' } },
@@ -97,14 +109,14 @@ export default {
         )
       ])
     },
-    renderMoreButton(h, button) {
+    renderMoreButton (h, button) {
       return h(Menu.Item, {
         on: {
           click: () => {
             if (button.confirm) {
               Modal.confirm({
                 content: button.confirm,
-                onOk() {
+                onOk () {
                   button.click()
                 }
               })
@@ -115,7 +127,7 @@ export default {
         }
       }, button.text)
     },
-    renderDivider(h) {
+    renderDivider (h) {
       return h(Divider, {
         props: {
           type: 'vertical'
@@ -123,7 +135,7 @@ export default {
       })
     }
   },
-  render(h) {
+  render (h) {
     return h('div', { class: 'erp-action-buttons' }, [
       this.showDivider
         ? this.renderButtons(h)

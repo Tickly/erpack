@@ -3,4 +3,9 @@ import FormItem from './FormItem'
 
 Form.Item = FormItem
 
-export default Form
+export default {
+  install (Vue) {
+    Vue.component(Form.name, Form)
+    Vue.component(FormItem.name, FormItem)
+  }
+}

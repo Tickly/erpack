@@ -42,7 +42,7 @@ export default class Column {
       width: this.width,
       customRender: (text, record, index) => {
         return this.customRender
-          ? this.customRender(text, record)
+          ? this.customRender(text, record, index)
           : this.render(h, text, record, index)
       },
       ellipsis: this.ellipsis
