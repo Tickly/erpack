@@ -97,6 +97,7 @@ export default {
         props: {
           type: 'link',
           size: 'small',
+          icon: button.icon,
           confirm: button.confirm,
         },
         on: {
