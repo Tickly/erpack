@@ -48,4 +48,12 @@ export default class Column {
       ellipsis: this.ellipsis
     }
   }
+
+  /**
+   * 解析器
+   * @param {*} col 列
+   */
+  static parser (col) {
+
+  }
 }

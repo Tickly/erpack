@@ -9,7 +9,14 @@ export default class SerialColumn extends Column {
     })
   }
 
+  /**
+   * 显示序号就行
+   */
   render (h, value, row, index) {
     return index + 1
+  }
+
+  static parser (col) {
+    if (col === '#') return true
   }
 }

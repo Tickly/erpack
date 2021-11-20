@@ -15,7 +15,10 @@ const ColumnsMap = {
 }
 
 export const registerColumn = (type, column) => {
-
+  if (Reflect.has(ColumnsMap, type)) {
+    throw new Error('已经有该类型的列了。')
+  }
+  Reflect.set(ColumnsMap, type, column)
 }
 
 export const getColumn = (col, model) => {

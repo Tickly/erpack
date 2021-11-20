@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+  },
+  "eslint.validate": [
+    "javascript"
+  ],
+  "js/ts.implicitProjectConfig.checkJs": true,
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.format.insertSpaceAfterConstructor": true
+}
