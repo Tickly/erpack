@@ -1,6 +1,7 @@
 import { Descriptions } from 'ant-design-vue'
 import Model from '../../model'
 import { prefixName } from '../utils'
+import './style.less'
 
 export default {
   name: prefixName('Descriptions'),
@@ -15,6 +16,11 @@ export default {
       default: () => []
     },
     form: Object,
+    labelWidth: [Number, String],
+    column: {
+      type: Number,
+      default: 3,
+    },
   },
   computed: {
     obj_items () {
@@ -43,22 +49,47 @@ export default {
       return this.items.map(map)
     }
   },
+  mounted () {
+    if (this.labelWidth) {
+      this.setLabelWidth()
+    }
+  },
   methods: {
+    setLabelWidth () {
+      const table = this.$el.querySelector('table')
+      const colgroup = document.createElement('colgroup')
+      for (let i = 0; i < this.column; i++) {
+        const colLabel = document.createElement('col')
+        colLabel.setAttribute('width', this.labelWidth)
+        const colValue = document.createElement('col')
+        colgroup.appendChild(colLabel)
+        colgroup.appendChild(colValue)
+      }
+      table.appendChild(colgroup)
+    },
     renderItems (h) {
+      return this.obj_items.map(item => this.renderItem(h, item))
+    },
+    renderItem (h, item) {
       const { form } = this
+      const {
+        span,
+        label,
+        prop,
+        value = Reflect.get(form, prop),
+      } = item
 
-      const r = ({ label, prop, span }) => h(Descriptions.Item, {
+      return h(Descriptions.Item, {
         props: {
           label,
           span
         }
-      }, Reflect.get(form, prop))
-
-      return this.obj_items.map(r)
+      }, value)
     },
   },
   render (h) {
     return h(Descriptions, {
+      class: 'erp-descriptions',
       props: {
         title: this.title,
         bordered: this.bordered,

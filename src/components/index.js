@@ -3,15 +3,13 @@ import Button from './Button'
 import Descriptions from './Descriptions'
 import Table from './Table'
 
-import Form from './Form/index'
-
-import Grid from './Grid'
+export { default as Form, FormItem } from './Form'
+export { default as Grid, GridItem } from './Grid'
 
 export {
   ActionButtons,
   Button,
   Descriptions,
   Table,
-  Form,
-  Grid,
 }
+

@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib src/index.js",
+    "build": "vue-cli-service build --target lib src/index.js --no-clean",
     "lint": "vue-cli-service lint",
     "inspect": "vue-cli-service --mode production inspect"
   },

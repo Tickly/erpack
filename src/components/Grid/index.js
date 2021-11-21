@@ -4,4 +4,11 @@ import './style.less'
 
 Grid.Item = GridItem
 
-export default Grid
+export { Grid, GridItem }
+
+export default {
+  install (Vue) {
+    Vue.component(Grid.name, Grid)
+    Vue.component(GridItem.name, GridItem)
+  }
+}
