@@ -4,13 +4,10 @@
 
 [文档地址](https://tickly.github.io/erpack-docs/)
 
-## yarn
+## 安装
 
-安装依赖
-
-## yarn build
-
-打包代码
+yarn add erpack
 
 ---
-npm包不一定最新
+
+npm 包不一定最新
