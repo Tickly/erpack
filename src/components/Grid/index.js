@@ -5,10 +5,3 @@ import './style.less'
 Grid.Item = GridItem
 
 export { Grid, GridItem }
-
-export default {
-  install (Vue) {
-    Vue.component(Grid.name, Grid)
-    Vue.component(GridItem.name, GridItem)
-  }
-}
