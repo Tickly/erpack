@@ -3,13 +3,33 @@ import { prefixName } from '../utils'
 export default {
   name: prefixName('Grid'),
   props: {
-    columns: [String, Number]
+    gap: String,
+    columns: [String, Number],
+    rows: [String, Number],
   },
-  render(h) {
+  render (h) {
     const style = {}
 
-    if (this.columns) {
-      style['grid-template-columns'] = `repeat(${this.columns}, 1fr)`
+    const { columns, rows, gap } = this
+
+    if (columns) {
+      if (typeof columns === typeof 0) {
+        style['grid-template-columns'] = `repeat(${columns}, 1fr)`
+      } else {
+        style['grid-template-columns'] = columns
+      }
+    }
+
+    if (rows) {
+      if (typeof rows === typeof 0) {
+        style['grid-template-rows'] = `repeat(${rows}, 1fr)`
+      } else {
+        style['grid-template-rows'] = rows
+      }
+    }
+
+    if (gap) {
+      style['grid-gap'] = gap
     }
 
     return h('div', {
