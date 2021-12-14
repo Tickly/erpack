@@ -1,7 +1,7 @@
 import Column from './Column'
 
-export default class TextColumn extends Column {
-  constructor(opt) {
+export default class StringColumn extends Column {
+  constructor (opt) {
     super(opt)
 
     const { formatter } = opt
@@ -9,7 +9,7 @@ export default class TextColumn extends Column {
     this.formatter = formatter
   }
 
-  render(h, value) {
+  render (h, value) {
     if (this.formatter) {
       // 如果是字符串模板
       if (typeof this.formatter === typeof '') {

@@ -1,8 +1,8 @@
-import TextColumn from './TextColumn'
 import { Tag } from 'ant-design-vue'
 import { isArray, isFunction, isPlainObject, isString } from '../../utils'
+import StringColumn from './StringColumn'
 
-export default class TagColumn extends TextColumn {
+export default class TagColumn extends StringColumn {
   constructor (opt) {
     super(opt)
 

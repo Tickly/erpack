@@ -1,3 +1,7 @@
+/**
+ * Form
+ * todo label-width参数，默认提供1-10个em长度的样式类
+ */
 import { prefixName } from '../utils'
 import { FormModel } from 'ant-design-vue'
 import Model from '../../model'

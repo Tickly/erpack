@@ -1,7 +1,7 @@
-import Column from './Column'
 import numeral from 'numeral'
+import StringColumn from './StringColumn'
 
-export default class NumberColumn extends Column {
+export default class NumberColumn extends StringColumn {
   constructor (opt) {
     super(opt)
     const { format = '0,0.00' } = opt

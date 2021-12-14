@@ -1,4 +1,4 @@
-import TextColumn from './TextColumn'
+import StringColumn from './StringColumn'
 import DateColumn from './DateColumn'
 import NumberColumn from './NumberColumn'
 import SerialColumn from './SerialColumn'
@@ -6,7 +6,7 @@ import ActionColumn from './ActionColumn'
 import TagColumn from './TagColumn'
 
 const ColumnsMap = {
-  text: TextColumn,
+  string: StringColumn,
   date: DateColumn,
   number: NumberColumn,
   serial: SerialColumn,
@@ -36,7 +36,7 @@ export const getColumn = (col, model) => {
   }
 
   const {
-    type = 'text',
+    type = 'string',
     dataIndex,
     title
   } = col

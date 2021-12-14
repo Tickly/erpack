@@ -1,7 +1,7 @@
-import Column from './Column'
 import moment from 'moment'
+import StringColumn from './StringColumn'
 
-export default class DateColumn extends Column {
+export default class DateColumn extends StringColumn {
   constructor (opt) {
     super(opt)
     const { format = 'YYYY-MM-DD HH:mm:ss' } = opt
