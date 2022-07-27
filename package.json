@@ -1,39 +1,20 @@
 {
-  "name": "erpack",
-  "version": "0.3.1",
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib src/index.js --no-clean",
-    "lint": "vue-cli-service lint",
-    "inspect": "vue-cli-service --mode production inspect"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
   },
-  "main": "dist/erpack.common.js",
   "dependencies": {
-    "ant-design-vue": "^1.7.8",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.1",
-    "numeral": "^2.0.6",
-    "vue": "^2.6.11"
+    "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-tg-config": "^1.0.5",
-    "eslint-plugin-vue": "^7.17.0",
-    "less": "^4.1.1",
-    "less-loader": "7.3.0",
-    "vue-template-compiler": "^2.6.11",
-    "webpack": "^5.52.0"
-  },
-  "peerDependencies": {
-    "ant-design-vue": "1.x"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "@vitejs/plugin-vue": "^3.0.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0",
+    "vue-tsc": "^0.38.4"
+  }
 }
