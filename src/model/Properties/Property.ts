@@ -1,8 +1,10 @@
 export default class Property {
-  constructor (opt) {
+  public label: string
+  public required: boolean
+  constructor(opt: any) {
     if (typeof opt === typeof '') {
       opt = {
-        label: opt
+        label: opt,
       }
     }
 
@@ -12,7 +14,7 @@ export default class Property {
     this.required = required
   }
 
-  getRules () {
+  getRules() {
     const rules = []
     if (this.required) {
       rules.push({

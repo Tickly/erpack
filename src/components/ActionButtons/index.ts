@@ -2,8 +2,17 @@ import { prefixName } from '../utils'
 import Button from '../Button'
 import { Menu, Modal, Divider, Dropdown, Icon, Space } from 'ant-design-vue'
 import './style.less'
+import Vue, { CreateElement, PropType, VNode } from 'vue'
 
-export default {
+export interface ActionButton {
+  text: string
+  icon: string
+  confirm: string
+  click: () => void
+  visible: (() => boolean) | boolean
+}
+
+export default Vue.extend({
   name: prefixName('ActionButtons'),
   props: {
     /**
@@ -12,7 +21,7 @@ export default {
      */
     limit: {
       type: Number,
-      default: 0
+      default: 0,
     },
     /**
      * 按钮配置项组成的数组
@@ -23,8 +32,8 @@ export default {
      * confirm [String] 设定一段文本，点击按钮后，会弹框二次确认，确认之后才会触发click事件。
      */
     buttons: {
-      type: Array,
-      default: () => []
+      type: Array as PropType<ActionButton[]>,
+      default: () => [],
     },
     /**
      * 是否显示分割线
@@ -32,22 +41,21 @@ export default {
     showDivider: {
       type: Boolean,
       default: true,
-    }
+    },
   },
   methods: {
-    renderButtons (h) {
-      let limit = this.limit
+    renderButtons(h: CreateElement) {
+      const limit = this.limit
 
       // 计算出当前需要展示的按钮
       const visibleButtons = []
       // 正常展示的按钮
-      const normalButtons = []
+      const normalButtons = [] as ActionButton[]
       // 需要放到 更多 里面的按钮
-      const moreButtons = []
+      const moreButtons = [] as ActionButton[]
 
       // 先提取出当前需要渲染的按钮
       for (const button of this.buttons) {
-
         // 如果设置了visible
         if (Reflect.has(button, 'visible')) {
           const { visible } = button
@@ -86,76 +94,83 @@ export default {
         renders = renders.reduce((list, render) => {
           list.push(render, this.renderDivider(h))
           return list
-        }, [])
+        }, [] as VNode[])
         renders.pop()
       }
 
       return renders
     },
-    renderButton (h, button) {
-      return h(Button, {
-        props: {
-          type: 'link',
-          size: 'small',
-          icon: button.icon,
-          confirm: button.confirm,
-        },
-        on: {
-          click: () => {
-            if (button.click) {
-              button.click()
-            }
+    renderButton(h: CreateElement, button: ActionButton) {
+      return h(
+        Button,
+        {
+          props: {
+            type: 'link',
+            size: 'small',
+            icon: button.icon,
+            confirm: button.confirm,
           },
-        }
-      }, button.text)
+          on: {
+            click: () => {
+              if (button.click) {
+                button.click()
+              }
+            },
+          },
+        },
+        button.text
+      )
     },
-    renderMoreButtons (h, buttons) {
+    renderMoreButtons(h: CreateElement, buttons: ActionButton[]) {
       return h(Dropdown, [
-        h(Button,
-          { props: { type: 'link', size: 'small' } },
-          [
-            '更多',
-            h(Icon, { props: { type: 'down' } })
-          ]),
-        h(Menu,
+        h(Button, { props: { type: 'link', size: 'small' } }, [
+          '更多',
+          h(Icon, { props: { type: 'down' } }),
+        ]),
+        h(
+          Menu,
           { slot: 'overlay' },
-          buttons.map(button => {
+          buttons.map((button) => {
             return this.renderMoreButton(h, button)
-          }),
-        )
+          })
+        ),
       ])
     },
-    renderMoreButton (h, button) {
-      return h(Menu.Item, {
-        on: {
-          click: () => {
-            if (button.confirm) {
-              Modal.confirm({
-                content: button.confirm,
-                onOk () {
-                  button.click()
-                }
-              })
-            } else {
-              button.click()
-            }
-          }
-        }
-      }, button.text)
+    renderMoreButton(h: CreateElement, button: ActionButton) {
+      return h(
+        Menu.Item,
+        {
+          on: {
+            click: () => {
+              if (button.confirm) {
+                Modal.confirm({
+                  content: button.confirm,
+                  onOk() {
+                    button.click()
+                  },
+                })
+              } else {
+                button.click()
+              }
+            },
+          },
+        },
+        button.text
+      )
     },
-    renderDivider (h) {
+    renderDivider(h: CreateElement) {
       return h(Divider, {
         props: {
-          type: 'vertical'
-        }
+          type: 'vertical',
+        },
       })
-    }
+    },
   },
-  render (h) {
+  render(h): VNode {
     return h('div', { class: 'erp-action-buttons' }, [
       this.showDivider
         ? this.renderButtons(h)
-        : h(Space, this.renderButtons(h))
+        : h(Space, this.renderButtons(h)),
     ])
-  }
-}
+  },
+})

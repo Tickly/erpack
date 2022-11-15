@@ -1,6 +1,7 @@
+import Vue from 'vue'
 import { prefixName } from '../utils'
 
-export default {
+export default Vue.extend({
   name: prefixName('GridItem'),
   props: {
     /**
@@ -16,8 +17,8 @@ export default {
      */
     row: [String, Number],
   },
-  render (h) {
-    const style = {}
+  render(h) {
+    const style = {} as any
 
     if (this.column) {
       if (typeof this.column === typeof 0) {
@@ -34,9 +35,13 @@ export default {
       }
     }
 
-    return h('div', {
-      class: 'erp-grid-item',
-      style,
-    }, this.$slots.default)
-  }
-}
+    return h(
+      'div',
+      {
+        class: 'erp-grid-item',
+        style,
+      },
+      this.$slots.default
+    )
+  },
+})

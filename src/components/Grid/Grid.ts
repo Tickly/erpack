@@ -1,14 +1,15 @@
+import Vue from 'vue'
 import { prefixName } from '../utils'
 
-export default {
+export default Vue.extend({
   name: prefixName('Grid'),
   props: {
     gap: String,
     columns: [String, Number],
     rows: [String, Number],
   },
-  render (h) {
-    const style = {}
+  render(h) {
+    const style = {} as any
 
     const { columns, rows, gap } = this
 
@@ -32,9 +33,13 @@ export default {
       style['grid-gap'] = gap
     }
 
-    return h('div', {
-      class: 'erp-grid',
-      style,
-    }, this.$slots.default)
-  }
-}
+    return h(
+      'div',
+      {
+        class: 'erp-grid',
+        style,
+      },
+      this.$slots.default
+    )
+  },
+})

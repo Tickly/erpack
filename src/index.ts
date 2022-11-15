@@ -1,14 +1,14 @@
 /**
  * Erpack
  */
-
+import Vue from 'vue'
 import Model from './model'
 
 import * as components from './components'
 export * from './components'
 
-export const install = Vue => {
-  Object.values(components).forEach(component => {
+export const install = (_Vue: Vue) => {
+  Object.values(components).forEach((component: any) => {
     if (component.install) {
       component.install(Vue)
     } else {
@@ -17,9 +17,7 @@ export const install = Vue => {
   })
 }
 
-export {
-  Model,
-}
+export { Model }
 
 export * from './model/Properties'
 

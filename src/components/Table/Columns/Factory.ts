@@ -14,14 +14,14 @@ const ColumnsMap = {
   tag: TagColumn,
 }
 
-export const registerColumn = (type, column) => {
+export const registerColumn = (type: string, column: any) => {
   if (Reflect.has(ColumnsMap, type)) {
     throw new Error('已经有该类型的列了。')
   }
   Reflect.set(ColumnsMap, type, column)
 }
 
-export const getColumn = (col, model) => {
+export const getColumn = (col: any, model: any) => {
   // 先将字符串转成对象
   if (typeof col === typeof '') {
     if (col === '#') {
@@ -35,11 +35,7 @@ export const getColumn = (col, model) => {
     }
   }
 
-  const {
-    type = 'string',
-    dataIndex,
-    title
-  } = col
+  const { type = 'string', dataIndex, title } = col
 
   // 如果没有设置title，需要从别的地方获取。
   if (title === undefined) {
@@ -54,10 +50,9 @@ export const getColumn = (col, model) => {
     }
   }
 
-  if (ColumnsMap[type]) {
-    return new ColumnsMap[type](col)
+  if ((ColumnsMap as any)[type]) {
+    return new (ColumnsMap as any)[type](col)
   } else {
     throw new Error('没有找到这个类型的列')
   }
 }
-

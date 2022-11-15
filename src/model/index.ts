@@ -1,34 +1,31 @@
 import Property from './Properties/Property'
 
 export default class Model {
-
-  constructor (data) {
+  constructor(data: any) {
     for (const key in data) {
       Reflect.set(this, key, Reflect.get(data, key))
     }
   }
 
   /**
-   * 
+   *
    * @returns {Object.<string, Property>} properties
    */
-  properties () {
-    return {
-
-    }
+  properties(): any {
+    return {}
   }
 
   /**
-   * 
-   * @param {String} prop 
+   *
+   * @param {String} prop
    * @returns {Object}
    */
-  getProperty (prop) {
+  getProperty(prop: string) {
     const props = this.properties()
     return props[prop]
   }
 
-  rules () {
+  rules() {
     const rules = {}
     const props = this.properties()
     for (const prop in props) {
@@ -37,5 +34,4 @@ export default class Model {
     }
     return rules
   }
-
 }

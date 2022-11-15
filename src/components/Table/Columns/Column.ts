@@ -1,18 +1,19 @@
+import { CreateElement } from 'vue'
+
 /**
  * todo
  * 所有的文本展示列都继承TextColumn
  * 这样就能都带click事件
  */
 export default class Column {
-  constructor (opt) {
-    const {
-      key,
-      dataIndex,
-      title,
-      width,
-      customRender,
-      ellipsis,
-    } = opt
+  public key: string
+  public dataIndex: string
+  public title: string
+  public width: number
+  public customRender: (text: any, record: any, index: number) => any
+  public ellipsis: boolean
+  constructor(opt: any) {
+    const { key, dataIndex, title, width, customRender, ellipsis } = opt
 
     this.key = key
     this.dataIndex = dataIndex
@@ -23,29 +24,29 @@ export default class Column {
   }
 
   /**
-   * 
+   *
    * @param {Function} h 渲染函数
    * @param {*} value 当前单元格的值
    * @param {Object} row 当前行的数据
    * @param {Number} index 当前行的index
-   * @returns 
+   * @returns
    */
-  render (h, value, row, index) {
+  render(h: CreateElement, value: any, row: any, index: number) {
     return value
   }
 
-  to (h) {
+  to(h: CreateElement) {
     return {
       key: this.key,
       dataIndex: this.dataIndex,
       title: this.title,
       width: this.width,
-      customRender: (text, record, index) => {
+      customRender: (text: string, record: any, index: number) => {
         return this.customRender
           ? this.customRender(text, record, index)
           : this.render(h, text, record, index)
       },
-      ellipsis: this.ellipsis
+      ellipsis: this.ellipsis,
     }
   }
 
@@ -53,7 +54,5 @@ export default class Column {
    * 解析器
    * @param {*} col 列
    */
-  static parser (col) {
-
-  }
+  static parser(col: any) {}
 }

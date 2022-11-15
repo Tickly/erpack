@@ -8,6 +8,7 @@
     "inspect": "vue-cli-service --mode production inspect"
   },
   "main": "dist/erpack.common.js",
+  "license": "MIT",
   "dependencies": {
     "ant-design-vue": "^1.7.8",
     "lodash": "^4.17.21",
@@ -16,17 +17,24 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@types/lodash": "^4.14.189",
+    "@types/numeral": "^2.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli-plugin-babel": "~4.5.13",
+    "@vue/cli-plugin-eslint": "~4.5.13",
+    "@vue/cli-plugin-typescript": "~4.5.13",
+    "@vue/cli-service": "~4.5.13",
+    "@vue/eslint-config-typescript": "^7.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-config-tg-config": "^1.0.5",
     "eslint-plugin-vue": "^7.17.0",
     "less": "^4.1.1",
     "less-loader": "7.3.0",
+    "typescript": "~4.1.5",
     "vue-template-compiler": "^2.6.11",
-    "webpack": "^5.52.0"
+    "webpack": "4"
   },
   "peerDependencies": {
     "ant-design-vue": "1.x"

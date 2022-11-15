@@ -1,7 +1,10 @@
+import { CreateElement } from 'vue'
 import Column from './Column'
 
 export default class StringColumn extends Column {
-  constructor (opt) {
+  public formatter: string | ((v: any) => string)
+
+  constructor(opt: any) {
     super(opt)
 
     const { formatter } = opt
@@ -9,7 +12,7 @@ export default class StringColumn extends Column {
     this.formatter = formatter
   }
 
-  render (h, value) {
+  render(h: CreateElement, value: any) {
     if (this.formatter) {
       // 如果是字符串模板
       if (typeof this.formatter === typeof '') {
