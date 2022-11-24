@@ -6,54 +6,55 @@
   </a-breadcrumb>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue'
 
 interface breadcrumb {
-  title: string;
-  path: string;
+  title: string
+  path: string
 }
 
 export default Vue.extend({
-  name: "AppBreadcrumb",
+  name: 'AppBreadcrumb',
   data() {
     return {
       list: [] as breadcrumb[],
-    };
+    }
   },
   watch: {
     $route() {
-      this.parseBreadcrumbs();
+      this.parseBreadcrumbs()
     },
   },
   mounted() {
-    this.parseBreadcrumbs();
+    this.parseBreadcrumbs()
   },
   methods: {
     parseBreadcrumbs() {
-      const list: breadcrumb[] = [];
-      console.log(this.$route.matched);
+      const list: breadcrumb[] = []
+      console.log(this.$route.matched)
 
       this.$route.matched.forEach((route) => {
         const {
           path,
           meta: { title },
-        } = route;
+        } = route
 
         if (title) {
           list.push({
             title,
-            path: path || "/",
-          });
+            path: path || '/',
+          })
         }
-      });
+      })
 
-      this.list = list;
+      this.list = list
     },
   },
-});
+})
 </script>
 <style lang="less">
 .app-breadcrumb {
   text-align: left;
+  padding: 1em;
 }
 </style>
