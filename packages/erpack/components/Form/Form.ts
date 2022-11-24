@@ -5,7 +5,6 @@
 import Vue, { CreateElement, PropType, VNode } from 'vue'
 import { FormModel } from 'ant-design-vue'
 import { prefixName } from '../utils'
-import Model from '../../model'
 
 export default Vue.extend({
   name: prefixName('Form'),
@@ -21,7 +20,6 @@ export default Vue.extend({
   },
   computed: {
     rules(): any {
-      if (this.form instanceof Model) return this.form.rules()
       return {}
     },
   },

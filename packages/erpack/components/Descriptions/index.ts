@@ -1,6 +1,5 @@
 import Vue, { CreateElement, PropType, VNode } from 'vue'
 import { Descriptions } from 'ant-design-vue'
-import Model from '../../model'
 import { prefixName } from '../utils'
 import './style.less'
 
@@ -37,14 +36,6 @@ export default Vue.extend({
         if (label === undefined) {
           // 先用prop做label
           v.label = prop
-
-          // 如果是模型实例，且定义了属性
-          if (this.form instanceof Model) {
-            const property = this.form.getProperty(prop)
-            if (property) {
-              v.label = property.label
-            }
-          }
         }
 
         return v

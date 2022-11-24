@@ -17,7 +17,10 @@
     ],
     "paths": {
       "@/*": [
-        "src/*"
+        "packages/erpack-admin/*"
+      ],
+      "erpack": [
+        "packages/erpack/index.ts"
       ]
     },
     "lib": [
@@ -25,12 +28,14 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
+    "declaration": true,
+    "declarationDir": "./types"
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],

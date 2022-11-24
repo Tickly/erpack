@@ -54,5 +54,7 @@ export default class Column {
    * 解析器
    * @param {*} col 列
    */
-  static parser(col: any) {}
+  static parser(col: any): boolean | undefined {
+    return false
+  }
 }

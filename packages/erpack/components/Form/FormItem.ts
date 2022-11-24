@@ -1,9 +1,8 @@
-// @ts-nocheck
 import { prefixName } from '../utils'
 import { FormModel } from 'ant-design-vue'
-import Model from '../../model'
+import Vue, { VNode } from 'vue'
 
-export default {
+export default Vue.extend({
   name: prefixName('FormItem'),
   inject: ['erpform'],
   props: {
@@ -11,20 +10,11 @@ export default {
     label: String,
   },
   computed: {
-    displayLabel () {
-      if (this.property) return this.property.label
+    displayLabel(): string {
       return this.label || this.prop
     },
-    model () {
-      return this.erpform.form
-    },
-    property () {
-      if (this.model instanceof Model) {
-        return this.model.getProperty(this.prop)
-      }
-    }
   },
-  render (h) {
+  render(h): VNode {
     return h(
       FormModel.Item,
       {
@@ -33,9 +23,9 @@ export default {
           prop: this.prop,
           label: this.displayLabel,
           ...this.$attrs,
-        }
+        },
       },
       this.$slots.default
     )
-  }
-}
+  },
+})

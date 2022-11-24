@@ -1,25 +1,20 @@
 /**
  * Erpack
  */
-import Vue from 'vue'
-import Model from './model'
+import { VueConstructor } from 'vue'
 
 import * as components from './components'
 export * from './components'
 
-export const install = (_Vue: Vue) => {
+export const install = (vue: VueConstructor) => {
   Object.values(components).forEach((component: any) => {
     if (component.install) {
-      component.install(Vue)
+      component.install(vue)
     } else {
-      Vue.component(component.name, component)
+      vue.component(component.name, component)
     }
   })
 }
-
-export { Model }
-
-export * from './model/Properties'
 
 export default {
   install,
