@@ -2,6 +2,14 @@ import { Module } from 'vuex'
 
 const state = {
   sidebarCollapsed: false,
+  /**
+   * 锁屏
+   */
+  locked: false,
+  /**
+   * 全屏
+   */
+  full: false,
 }
 
 export default {

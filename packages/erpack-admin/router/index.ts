@@ -1,55 +1,55 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import Layout from '@/views/layout/Layout.vue'
-import MenuView from '@/views/layout/MenuView.vue'
+import VueRouter from 'vue-router'
+import Layout from '@/layouts/Layout.vue'
 
-Vue.use(VueRouter)
+import { createRoutes } from '@/components/Menu/RouterMenu'
 
-const routes: Array<RouteConfig> = [
+const routes = createRoutes([
   {
     path: '/',
     component: Layout,
-    meta: { title: '首页' },
     children: [
       {
-        path: 'a',
-        component: MenuView,
-        meta: { title: '一级菜单' },
+        path: 'user',
+        title: '用户管理',
+        icon: 'user',
         children: [
           {
-            path: 'b',
-            component: MenuView,
-            meta: { title: '二级菜单' },
+            path: 'list',
+            title: '用户列表',
+            icon: 'user',
             children: [
               {
-                path: 'list',
-                meta: { title: '列表' },
-                component: () => import('@/views/a/b/list'),
-              },
-              {
                 path: 'create',
-                meta: { title: '新增' },
-                component: () => import('@/views/a/b/create'),
+                title: '新增',
+                hide: true,
+                icon: 'user-add',
               },
             ],
           },
         ],
       },
       {
-        path: 'user',
-        component: MenuView,
-        meta: { title: '用户管理' },
+        path: 'bug',
+        title: 'Bug管理',
         children: [
           {
-            path: 'list',
-            meta: { title: '列表' },
-            component: () => import('../views/user/list'),
+            path: 'my-bugs',
+            title: '我的Bug',
+            component: () => import('@/views/bugs/MyBugs'),
           },
         ],
       },
+      {
+        path: 'system',
+        title: '系统设置，顺便测试一下非常长的文字怎么办',
+      },
     ],
   },
-]
+])
+console.log(routes)
+
+Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',

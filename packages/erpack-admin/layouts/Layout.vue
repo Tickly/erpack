@@ -45,6 +45,8 @@ export default Vue.extend({
 }
 .ant-layout-content {
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 .ant-layout-footer {
   /* back */
@@ -55,6 +57,8 @@ export default Vue.extend({
 }
 
 .page-view {
+  flex-grow: 1;
   padding: 1em;
+  overflow: auto;
 }
 </style>
