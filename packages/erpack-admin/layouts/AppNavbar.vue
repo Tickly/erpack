@@ -4,18 +4,27 @@
       <a-icon @click="toggle" :type="icon" />
     </div>
 
+    <a-icon
+      title="Dark Mode"
+      type="thunderbolt"
+      :theme="$app.isDark && 'filled'"
+      @click="toggleDarkMode"
+    />
     <a-icon :type="locked ? 'unlock' : 'lock'" />
     <a-icon :type="full ? 'fullscreen-exit' : 'fullscreen'" />
-    <div class="user">
-      <a-badge :count="1"><a-avatar shape="square" icon="user" /></a-badge>
-    </div>
+    <app-user />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { mapActions, mapState } from 'vuex'
+import AppUser from './AppUser.vue'
 export default Vue.extend({
+  components: { AppUser },
+  data() {
+    return {}
+  },
   computed: {
     ...mapState('app', ['sidebarCollapsed', 'locked', 'full']),
     icon() {
@@ -24,6 +33,10 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions('app', ['toggle']),
+    toggleDarkMode() {
+      // this.$app
+      this.$app.isDark = !this.$app.isDark
+    },
   },
 })
 </script>
@@ -34,5 +47,9 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  > .anticon {
+    cursor: pointer;
+  }
 }
 </style>

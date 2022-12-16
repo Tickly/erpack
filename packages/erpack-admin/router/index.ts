@@ -10,6 +10,12 @@ const routes = createRoutes([
     component: Layout,
     children: [
       {
+        path: '',
+        title: 'Dashboard',
+        icon: 'appstore',
+        component: () => import('@/views/dashboard/index.vue'),
+      },
+      {
         path: 'user',
         title: '用户管理',
         icon: 'user',
@@ -24,14 +30,19 @@ const routes = createRoutes([
                 title: '新增',
                 hide: true,
                 icon: 'user-add',
+                component: () => import('@/views/user/create'),
               },
             ],
+          },
+          {
+            path: 'birthday',
+            title: '本月寿星',
           },
         ],
       },
       {
         path: 'bug',
-        title: 'Bug管理',
+        title: 'Bug管理-父级菜单名字很长怎么办呢',
         children: [
           {
             path: 'my-bugs',
@@ -39,6 +50,10 @@ const routes = createRoutes([
             component: () => import('@/views/bugs/MyBugs'),
           },
         ],
+      },
+      {
+        path: 'components',
+        title: '组件',
       },
       {
         path: 'system',

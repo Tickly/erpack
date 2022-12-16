@@ -1,5 +1,5 @@
 <template>
-  <a-layout>
+  <a-layout :class="$app.isDark && 'dark-mode'">
     <app-sider />
     <a-layout>
       <a-layout-header>

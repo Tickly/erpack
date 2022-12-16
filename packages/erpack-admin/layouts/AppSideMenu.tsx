@@ -69,10 +69,16 @@ export default Vue.extend({
     this.menusMap = tree2hash(this.menus)
 
     const currentMenu = this.getCurrentMenu()
-    this.keys = [currentMenu.path]
-    this.openKeys = this.getParentKeys(currentMenu)
+    if (currentMenu) {
+      this.keys = [currentMenu.path]
+      this.openKeys = this.getParentKeys(currentMenu)
+    }
   },
   methods: {
+    /**
+     * 获取当前路由匹配的菜单节点
+     * @returns
+     */
     getCurrentMenu() {
       return this.menusMap[this.$route.path]
     },
@@ -100,7 +106,7 @@ export default Vue.extend({
           <Menu.SubMenu key={item.key}>
             <span slot="title">
               {item.icon ? <a-icon type={item.icon} /> : null}
-              <span>{item.title}</span>
+              <span title={item.title}>{item.title}</span>
             </span>
             {item.children.map(this.renderMenu)}
           </Menu.SubMenu>
@@ -111,7 +117,9 @@ export default Vue.extend({
           <Menu.Item key={item.key} title={item.title}>
             <router-link to={item.key}>
               {item.icon ? <Icon type={item.icon} /> : null}
-              <span>{item.title}</span>
+              <span class="ant-table-row-cell-ellipsis" title={item.title}>
+                {item.title}
+              </span>
             </router-link>
           </Menu.Item>
         )
@@ -127,6 +135,7 @@ export default Vue.extend({
       <a-menu
         v-model={this.keys}
         mode="inline"
+        theme={this.$app.isDark ? 'dark' : 'light'}
         openKeys={this.openKeys}
         inlineCollapsed={this.$store.state.app.sidebarCollapsed}
         on-openChange={this.onOpen}

@@ -3,6 +3,10 @@ import { Module } from 'vuex'
 const state = {
   sidebarCollapsed: false,
   /**
+   * Dark Mode
+   */
+  isDark: false,
+  /**
    * 锁屏
    */
   locked: false,

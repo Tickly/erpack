@@ -17,6 +17,16 @@ module.exports = defineConfig({
   chainWebpack: (config) => {
     config.entry('app').clear().add('./packages/erpack-admin/index.ts')
 
+    // 处理本地svg
+    const svgRule = config.module.rule('svg')
+    svgRule.uses.clear()
+    svgRule
+      .use('babel-loader')
+      .loader('babel-loader')
+      .end()
+      .use('vue-svg-loader')
+      .loader('vue-svg-loader')
+
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach((type) =>
       addStyleResource(config.module.rule('less').oneOf(type))
