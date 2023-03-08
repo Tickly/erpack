@@ -1,0 +1,19 @@
+{
+  "name": "erpack",
+  "version": "0.3.1",
+  "main": "dist/erpack.common.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib src/index.ts --no-clean",
+    "lint": "vue-cli-service lint",
+    "inspect": "vue-cli-service --mode production inspect"
+  },
+  "dependencies": {
+    "ant-design-vue": "1.7.8",
+    "vue": "^2.6.0",
+    "vue-template-compiler": "^2.6.0"
+  },
+  "peerDependencies": {
+    "ant-design-vue": "1.x"
+  }
+}

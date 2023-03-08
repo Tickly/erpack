@@ -1,0 +1,25 @@
+{
+  "name": "erpack-docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "bash deploy.sh",
+    "docs:dev": "vuepress dev docs --temp .temp",
+    "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "less": "4.1.1",
+    "less-loader": "7.3.0",
+    "webpack": "^4.0.0",
+    "vuepress": "^1.9.9",
+    "core-js": "2.6.12",
+    "vue-template-compiler": "^2.6.0",
+    "vuepress-plugin-code-example": "^1.1.0"
+  },
+  "dependencies": {
+    "erpack": "^0.4.0",
+    "ant-design-vue": "1.7.8",
+    "vue": "^2.6.0"
+  }
+}
