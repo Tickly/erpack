@@ -1,5 +1,6 @@
 module.exports = {
-  base: '/erpack-docs/',
+  base: '/',
+  dest: '.vuepress/erpack-docs',
   themeConfig: {
     navbar: false,
     sidebar: [
