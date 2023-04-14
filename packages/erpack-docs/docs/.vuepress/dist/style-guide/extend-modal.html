@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>编写一个弹框组件</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/erpack-docs/assets/css/2.styles.6713f7ab.css" as="style"><link rel="preload" href="/erpack-docs/assets/js/app.9910fe62.js" as="script"><link rel="preload" href="/erpack-docs/assets/js/6.7dbf4d76.js" as="script"><link rel="preload" href="/erpack-docs/assets/js/58.026fa9c4.js" as="script"><link rel="prefetch" href="/erpack-docs/assets/js/0.162f0d31.js"><link rel="prefetch" href="/erpack-docs/assets/js/1.845b86a3.js"><link rel="prefetch" href="/erpack-docs/assets/js/10.0bb329fc.js"><link rel="prefetch" href="/erpack-docs/assets/js/11.c6035abb.js"><link rel="prefetch" href="/erpack-docs/assets/js/12.322cb38a.js"><link rel="prefetch" href="/erpack-docs/assets/js/13.44174ecf.js"><link rel="prefetch" href="/erpack-docs/assets/js/14.02984b22.js"><link rel="prefetch" href="/erpack-docs/assets/js/15.c140cec2.js"><link rel="prefetch" href="/erpack-docs/assets/js/16.ddb19078.js"><link rel="prefetch" href="/erpack-docs/assets/js/17.1d86fbf9.js"><link rel="prefetch" href="/erpack-docs/assets/js/18.d6d38029.js"><link rel="prefetch" href="/erpack-docs/assets/js/19.39c4677e.js"><link rel="prefetch" href="/erpack-docs/assets/js/20.cc6d26cf.js"><link rel="prefetch" href="/erpack-docs/assets/js/21.5d8b54c2.js"><link rel="prefetch" href="/erpack-docs/assets/js/22.031de847.js"><link rel="prefetch" href="/erpack-docs/assets/js/23.2722defc.js"><link rel="prefetch" href="/erpack-docs/assets/js/24.7fe7bd76.js"><link rel="prefetch" href="/erpack-docs/assets/js/25.a35e3d14.js"><link rel="prefetch" href="/erpack-docs/assets/js/26.2d8dbc61.js"><link rel="prefetch" href="/erpack-docs/assets/js/27.0952db28.js"><link rel="prefetch" href="/erpack-docs/assets/js/28.8bf343ec.js"><link rel="prefetch" href="/erpack-docs/assets/js/29.17020161.js"><link rel="prefetch" href="/erpack-docs/assets/js/3.d56a644a.js"><link rel="prefetch" href="/erpack-docs/assets/js/30.9d8eb1d7.js"><link rel="prefetch" href="/erpack-docs/assets/js/31.6305f428.js"><link rel="prefetch" href="/erpack-docs/assets/js/32.a5b57cff.js"><link rel="prefetch" href="/erpack-docs/assets/js/33.27ef1215.js"><link rel="prefetch" href="/erpack-docs/assets/js/34.cfcc65ed.js"><link rel="prefetch" href="/erpack-docs/assets/js/35.31c47a86.js"><link rel="prefetch" href="/erpack-docs/assets/js/36.6bca0277.js"><link rel="prefetch" href="/erpack-docs/assets/js/37.0e5b3133.js"><link rel="prefetch" href="/erpack-docs/assets/js/38.ab78d400.js"><link rel="prefetch" href="/erpack-docs/assets/js/39.a9ba6949.js"><link rel="prefetch" href="/erpack-docs/assets/js/40.e371c5c5.js"><link rel="prefetch" href="/erpack-docs/assets/js/41.9a6d788f.js"><link rel="prefetch" href="/erpack-docs/assets/js/42.e22de86b.js"><link rel="prefetch" href="/erpack-docs/assets/js/43.8c7f232f.js"><link rel="prefetch" href="/erpack-docs/assets/js/44.9f350e88.js"><link rel="prefetch" href="/erpack-docs/assets/js/45.b4a8de31.js"><link rel="prefetch" href="/erpack-docs/assets/js/46.e13b2525.js"><link rel="prefetch" href="/erpack-docs/assets/js/47.d66522ac.js"><link rel="prefetch" href="/erpack-docs/assets/js/48.30446a67.js"><link rel="prefetch" href="/erpack-docs/assets/js/49.b7efadb2.js"><link rel="prefetch" href="/erpack-docs/assets/js/5.e450676a.js"><link rel="prefetch" href="/erpack-docs/assets/js/50.4c56583e.js"><link rel="prefetch" href="/erpack-docs/assets/js/51.23793f44.js"><link rel="prefetch" href="/erpack-docs/assets/js/52.225f2160.js"><link rel="prefetch" href="/erpack-docs/assets/js/53.2c0cad4f.js"><link rel="prefetch" href="/erpack-docs/assets/js/54.78627113.js"><link rel="prefetch" href="/erpack-docs/assets/js/55.da5adb52.js"><link rel="prefetch" href="/erpack-docs/assets/js/56.1977ad8d.js"><link rel="prefetch" href="/erpack-docs/assets/js/57.d86a8c44.js"><link rel="prefetch" href="/erpack-docs/assets/js/59.4e7c7a85.js"><link rel="prefetch" href="/erpack-docs/assets/js/60.de82eea6.js"><link rel="prefetch" href="/erpack-docs/assets/js/61.cdfc57d9.js"><link rel="prefetch" href="/erpack-docs/assets/js/7.f27abb55.js"><link rel="prefetch" href="/erpack-docs/assets/js/8.a7095ef1.js"><link rel="prefetch" href="/erpack-docs/assets/js/9.c7fc7b88.js">
+    <link rel="stylesheet" href="/erpack-docs/assets/css/2.styles.6713f7ab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-navbar"><!----> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/erpack-docs/" aria-current="page" class="sidebar-link">erpack</a></li><li><a href="/erpack-docs/vision.html" class="sidebar-link">愿景</a></li><li><a href="/erpack-docs/FAQ.html" class="sidebar-link">FAQ</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="编写一个弹框组件"><a href="#编写一个弹框组件" class="header-anchor">#</a> 编写一个弹框组件</h1> <p>也许你会觉得，弹框有什么好说的？无非就是在页面中码一些代码咯。</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-modal</span>
+      <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>弹框标题<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">:visible</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>modalVisible<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">@ok</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>onModalOk<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">@cancel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>onModalCancel<span class="token punctuation">&quot;</span></span>
+    <span class="token punctuation">&gt;</span></span>
+      ...弹框内容
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-modal</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">modalVisible</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 弹框确定</span>
+    <span class="token function">onModalOk</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">validate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">closeModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reloadTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">onModalCancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>modalVisible <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>但是系统里面肯定不止一个弹框吧？我可不想每次都去处理visible，再说也不想污染页面代码，弹框与页面各论各的。</p> <p>所以最好是能够有一个方法，能够快速的生成一个弹框组件，避免重复写一些业务无关代码（比如这里弹框的关闭事件）。</p> <p>所以提供一个<code>ModalMixin.js</code>用来快速制作弹框。</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">mixins</span><span class="token operator">:</span> <span class="token punctuation">[</span>ModalMixin<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">&quot;弹框标题&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function">renderModalBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">...弹框内容</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="弹框类型"><a href="#弹框类型" class="header-anchor">#</a> 弹框类型</h2> <p>我接触到的弹框，基本可以先分为两大类。</p> <ul><li>查看数据</li> <li>获取数据</li></ul> <h3 id="查看数据类型的弹框"><a href="#查看数据类型的弹框" class="header-anchor">#</a> 查看数据类型的弹框</h3> <p>这一类的弹框很简单，footer 通常只有一个【关闭】按钮，或者 footer=null。</p> <h3 id="获取数据类型的弹框"><a href="#获取数据类型的弹框" class="header-anchor">#</a> 获取数据类型的弹框</h3> <p>比如【新增】【修改】的弹框，这个弹框就得给到我【表单数据】或者【保存结果】，方便弹框的调用者根据结果做下一步数据。
+比如【选择 XXX】的弹框，也是要给到调用者一个【选中数据】。</p> <h2 id="promise-形式的弹框"><a href="#promise-形式的弹框" class="header-anchor">#</a> Promise 形式的弹框</h2> <p>这样盘下来，一个理想的效果是，弹框组件提供一个方法去显示弹框，然后该方法的返回结果是一个<code>Promise</code>对象，在点击弹框的【确定】按钮之后，<code>Promise</code>对象的状态变为<code>fulfilled</code>，点击【关闭】按钮之后，<code>Promise</code>对象的状态变为<code>rejected</code>。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 添加用户</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>userEditor
+  <span class="token comment">// 打开弹框</span>
+  <span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// 点击确定之后，弹框内部会做【验证】【保存】</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 添加了用户之后刷新表格</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>table<span class="token punctuation">.</span><span class="token function">reload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 修改用户</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>userEditor<span class="token punctuation">.</span><span class="token function">edit</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>table<span class="token punctuation">.</span><span class="token function">reload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 选择用户</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>userSelector
+  <span class="token comment">// 打开弹框选择用户</span>
+  <span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// 点击确定之后，页面提交搜索条件。</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">users</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>search<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">userIds</span><span class="token operator">:</span> users <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="最终效果"><a href="#最终效果" class="header-anchor">#</a> 最终效果</h2> <p>在列表页面，表格中有个修改按钮，要求点击之后通过弹框修改内容。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> buttons <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">&quot;修改&quot;</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">click</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">v<span class="token punctuation">,</span> row</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 引用弹框</span>
+      <span class="token comment">// 调用编辑方法</span>
+      <span class="token comment">// 编辑完，点击确定按钮后，弹框自动提交请求保存数据，保存成功之后再刷新当前列表</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>itemModal<span class="token punctuation">.</span><span class="token function">edit</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>reloadTable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/erpack-docs/assets/js/app.9910fe62.js" defer></script><script src="/erpack-docs/assets/js/6.7dbf4d76.js" defer></script><script src="/erpack-docs/assets/js/58.026fa9c4.js" defer></script>
+  </body>
+</html>

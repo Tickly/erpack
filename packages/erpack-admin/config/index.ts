@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { reactive } from 'vue'
 
 interface Config {
   isDark?: boolean
@@ -9,16 +9,14 @@ interface Config {
 const defaultConfig: Config = {
   isDark: false,
   isLocked: false,
-  isFull: false,
+  isFull: false
 }
 
 export function defineConfig(config: Config) {
   const c = Object.assign({}, defaultConfig, config)
-  return Vue.observable(c)
+  return reactive(c)
 }
 
 const AppConfig = defineConfig({})
-
-Vue.prototype.$app = AppConfig
 
 export default AppConfig
