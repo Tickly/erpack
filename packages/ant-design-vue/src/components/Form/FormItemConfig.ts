@@ -1,8 +1,13 @@
-export interface FormItemConfig {
+export interface FormItemConfig<T = Record<string, any>> {
   label: string
   /**
    * 可见性
    * @returns
    */
-  visible?: () => boolean
+  visible?: (form: T) => boolean
+  /**
+   * 自定义渲染
+   * @returns
+   */
+  customRender?: () => any
 }

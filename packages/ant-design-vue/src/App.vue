@@ -17,9 +17,7 @@
         <a-card title="4列">
           <Form :column="4" :items="formItems" />
         </a-card>
-        <a-card title="控制字段显示状态">
-          <Form :column="3" :items="itemsVisible" />
-        </a-card>
+        <FormDemo />
       </div>
       <a-anchor>
         <a-anchor-link
@@ -31,11 +29,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import Table from './components/Table'
-import Descriptions from './components/Descriptions'
-import Form from './components/Form'
 import { computed } from 'vue'
-import { useFormItems } from './components'
+import { useFormItems, Form } from './components'
+
+import FormDemo from './docs/Form'
 
 const columns = computed(() => {
   return []
@@ -53,12 +50,6 @@ const formItems = [
   { label: 'f' },
   { label: 'g' },
 ]
-
-const itemsVisible = useFormItems([
-  //
-  { label: 'a' },
-  { label: 'b', visible: () => false },
-])
 </script>
 
 <style>

@@ -2,13 +2,17 @@ import type { FormItemConfig } from './FormItemConfig'
 
 export const useForm = (
   form: Record<string, any>,
-  configs: FormItemConfig[]
+  items: FormItemConfig<typeof form>[]
 ) => {
-  return configs
+  const props = {
+    items,
+  }
+
+  return { props }
 }
 
-export const useFormItems = (
-  configs: Array<FormItemConfig | FormItemConfig[]>
+export const useFormItems = <T>(
+  configs: Array<FormItemConfig<T> | FormItemConfig<T>[]>
 ) => {
   return configs
 }

@@ -34,6 +34,9 @@ export default defineComponent({
     renderCol(children: JSX.Element, span?: number) {
       return this.inline ? children : <Col span={span}>{children}</Col>
     },
+    renderFormItemControl(item: FormItemConfig) {
+      return item.customRender ? item.customRender() : <Input />
+    },
     renderFormItem(item: FormItemConfig | FormItemConfig[]): any {
       if (Array.isArray(item)) {
         const span = 24 / item.length
@@ -51,7 +54,7 @@ export default defineComponent({
                 label: item.label,
               },
             },
-            [<Input />]
+            [this.renderFormItemControl(item)]
           ),
           this.colSpan
         )
