@@ -1,9 +1,10 @@
 import { defineComponent, h } from 'vue'
-import type { PropType, VNode } from 'vue'
+import type { PropType, VNode, VNodeChildren } from 'vue'
 import { Col, Form, Input, Row } from 'ant-design-vue'
 import type { FormItemConfig } from './FormItemConfig'
 
 export default defineComponent({
+  name: 'ErpForm',
   props: {
     inline: Boolean,
     /**
@@ -13,34 +14,46 @@ export default defineComponent({
       type: Number,
       default: 1,
     },
+    /**
+     * items接收一个数组
+     * 其中，如果元素为FormItemConfig，则宽度跟随Form的Column来走。
+     */
     items: {
       type: Array as PropType<Array<FormItemConfig | FormItemConfig[]>>,
     },
   },
+  computed: {
+    colSpan() {
+      return 24 / this.column
+    },
+  },
   methods: {
-    renderFormItem(item: FormItemConfig | FormItemConfig[]) {
+    renderRow(children: JSX.Element[]) {
+      return this.inline ? children : <Row gutter={24}>{children}</Row>
+    },
+    renderCol(children: JSX.Element, span?: number) {
+      return this.inline ? children : <Col span={span}>{children}</Col>
+    },
+    renderFormItem(item: FormItemConfig | FormItemConfig[]): any {
       if (Array.isArray(item)) {
         const span = 24 / item.length
-        return (
-          <Row gutter={24}>
-            {item.map((i) => {
-              return <Col span={span}>{this.renderFormItem(i)}</Col>
-            })}
-          </Row>
+        return this.renderRow(
+          item.map((i: FormItemConfig) => {
+            return this.renderCol(this.renderFormItem(i), span)
+          })
         )
       } else {
-        return (
-          <Col>
-            {h(
-              Form.Item,
-              {
-                props: {
-                  label: item.label,
-                },
+        return this.renderCol(
+          h(
+            Form.Item,
+            {
+              props: {
+                label: item.label,
               },
-              [<Input />]
-            )}
-          </Col>
+            },
+            [<Input />]
+          ),
+          this.colSpan
         )
       }
     },
@@ -50,6 +63,7 @@ export default defineComponent({
       Form,
       {
         props: {
+          layout: this.inline ? 'inline' : null,
           ...this.$props,
         },
       },

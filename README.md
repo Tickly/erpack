@@ -24,3 +24,13 @@ npm 包不一定最新
 - 分配给我的未解决问题(3)
 - 由我提交的问题
 - 所有问题
+
+# pnpm 用法
+
+## 全局依赖
+
+pnpm add xxx
+
+## 局部依赖
+
+pnpm add xxx --filter @erpack/xxx
