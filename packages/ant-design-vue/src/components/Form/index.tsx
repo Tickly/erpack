@@ -1,9 +1,9 @@
-import { defineComponent, h } from 'vue'
+import Vue, { defineComponent, h } from 'vue'
 import type { PropType, VNode, VNodeChildren } from 'vue'
 import { Col, Form, Input, Row } from 'ant-design-vue'
 import type { FormItemConfig } from './FormItemConfig'
 
-export default defineComponent({
+export default Vue.extend({
   name: 'ErpForm',
   props: {
     inline: Boolean,
@@ -28,10 +28,10 @@ export default defineComponent({
     },
   },
   methods: {
-    renderRow(children: JSX.Element[]) {
+    renderRow(children: Array<JSX.Element | null>) {
       return this.inline ? children : <Row gutter={24}>{children}</Row>
     },
-    renderCol(children: JSX.Element, span?: number) {
+    renderCol(children: JSX.Element | null, span?: number) {
       return this.inline ? children : <Col span={span}>{children}</Col>
     },
     renderFormItemControl(item: FormItemConfig) {
@@ -46,18 +46,20 @@ export default defineComponent({
           })
         )
       } else {
-        return this.renderCol(
-          h(
-            Form.Item,
-            {
-              props: {
-                label: item.label,
-              },
-            },
-            [this.renderFormItemControl(item)]
-          ),
-          this.colSpan
-        )
+        const children =
+          item === null
+            ? null
+            : h(
+                Form.Item,
+                {
+                  props: {
+                    label: item.label,
+                  },
+                },
+                [this.renderFormItemControl(item)]
+              )
+
+        return this.renderCol(children, this.colSpan)
       }
     },
   },

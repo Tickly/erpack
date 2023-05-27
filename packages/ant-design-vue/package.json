@@ -1,7 +1,9 @@
 {
   "name": "@erpack/ant-design-vue",
   "version": "0.0.0",
-  "main": "dist/ant-design-vue.mjs",
+  "main": "dist/ant-design-vue.js",
+  "type": "module",
+  "module": "./dist/ant-design-vue.js",
   "types": "src/main.d.ts",
   "scripts": {
     "dev": "vite",

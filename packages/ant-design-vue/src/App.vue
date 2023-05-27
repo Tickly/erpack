@@ -1,36 +1,20 @@
 <template>
   <div id="app">
-    <div class="flex">
-      <div class="flex-grow flex flex-col gap-16">
-        <a-card title="行内模式">
-          <Form inline :items="formItems" />
-        </a-card>
-        <a-card title="1列">
-          <Form :column="1" :items="formItems" />
-        </a-card>
-        <a-card title="2列">
-          <Form :column="2" :items="formItems" />
-        </a-card>
-        <a-card title="3列">
-          <Form :column="3" :items="formItems" />
-        </a-card>
-        <a-card title="4列">
-          <Form :column="4" :items="formItems" />
-        </a-card>
-        <FormDemo />
-      </div>
+    <div class="flex gap-16" ref="mainRef">
+      <FormDemo />
       <a-anchor>
         <a-anchor-link
-          href="#components-anchor-demo-basic"
-          title="Basic demo"
+          v-for="anchor of anchorLinks"
+          :key="anchor.title"
+          :href="anchor.href"
+          :title="anchor.title"
         />
       </a-anchor>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useFormItems, Form } from './components'
+import { computed, onMounted, ref } from 'vue'
 
 import FormDemo from './docs/Form'
 
@@ -40,16 +24,28 @@ const columns = computed(() => {
 
 const tableData = [{ id: 1, name: '张三' }]
 
-const formItems = [
-  //
-  { label: 'a' },
-  { label: 'b' },
-  { label: 'c' },
-  { label: 'd' },
-  { label: 'e' },
-  { label: 'f' },
-  { label: 'g' },
-]
+interface AnchorLink {
+  title: string
+  href: string
+}
+const anchorLinks = ref<AnchorLink[]>([])
+
+const mainRef = ref<HTMLDivElement>()
+
+onMounted(() => {
+  console.log(mainRef.value)
+
+  mainRef.value?.querySelectorAll('.ant-card').forEach((el) => {
+    console.log(el)
+    const tEl = el.querySelector('.ant-card-head-title')
+    if (tEl) {
+      anchorLinks.value.push({
+        title: tEl.innerHTML,
+        href: '#' + el.id,
+      })
+    }
+  })
+})
 </script>
 
 <style>
@@ -58,5 +54,11 @@ const formItems = [
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+.ant-col-4\.8 {
+  display: block;
+  box-sizing: border-box;
+  width: 20%;
 }
 </style>

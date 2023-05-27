@@ -194,6 +194,7 @@ importers:
 
   packages/erpack-docs:
     specifiers:
+      '@erpack/ant-design-vue': workspace:^0.0.0
       ant-design-vue: 1.7.8
       core-js: 2.6.12
       erpack: ^0.4.0
@@ -205,6 +206,7 @@ importers:
       vuepress-plugin-code-example: ^1.1.0
       webpack: ^4.0.0
     dependencies:
+      '@erpack/ant-design-vue': link:../ant-design-vue
       ant-design-vue: 1.7.8_rhqkolmkwunxzlyyxxsuwaiuri
       erpack: 0.4.0_ant-design-vue@1.7.8
       vue: 2.7.14

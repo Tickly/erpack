@@ -12,7 +12,7 @@ export const useForm = (
 }
 
 export const useFormItems = <T>(
-  configs: Array<FormItemConfig<T> | FormItemConfig<T>[]>
+  configs: Array<FormItemConfig<T> | Array<FormItemConfig<T> | null>>
 ) => {
   return configs
 }
