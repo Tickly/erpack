@@ -1,11 +1,14 @@
 import Vue, { defineComponent, h } from 'vue'
 import type { PropType, VNode, VNodeChildren } from 'vue'
-import { Col, Form, Input, Row } from 'ant-design-vue'
+import { Col, Form, FormModel, Input, Row } from 'ant-design-vue'
 import type { FormItemConfig } from './FormItemConfig'
+import './style.scss'
+import FormItem from './FormItem'
 
 export default Vue.extend({
   name: 'ErpForm',
   props: {
+    form: Object,
     inline: Boolean,
     /**
      * 非inline模式下有效
@@ -23,6 +26,15 @@ export default Vue.extend({
     },
   },
   computed: {
+    fmProps() {
+      const { form, layout = this.inline ? 'inline' : null, ...o } = this.$props
+
+      return {
+        ...o,
+        model: form,
+        layout,
+      }
+    },
     colSpan() {
       return 24 / this.column
     },
@@ -50,10 +62,15 @@ export default Vue.extend({
           item === null
             ? null
             : h(
-                Form.Item,
+                FormItem,
                 {
                   props: {
                     label: item.label,
+                  },
+                  on: {
+                    change(v: any) {
+                      console.log('on form item change', v)
+                    },
                   },
                 },
                 [this.renderFormItemControl(item)]
@@ -65,12 +82,10 @@ export default Vue.extend({
   },
   render(h): VNode {
     return h(
-      Form,
+      FormModel,
       {
-        props: {
-          layout: this.inline ? 'inline' : null,
-          ...this.$props,
-        },
+        class: 'erp-form',
+        props: this.fmProps,
       },
       [
         <Row gutter={24}>

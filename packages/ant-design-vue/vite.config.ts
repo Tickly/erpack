@@ -14,6 +14,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/lib.ts'),
       name: 'erpack',
       // formats: ['es'],
+      fileName: 'erpack',
     },
   },
 

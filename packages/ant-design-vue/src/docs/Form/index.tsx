@@ -1,27 +1,9 @@
-import { useFormItems, Form } from '@/lib'
-import { defineComponent } from 'vue'
+import { useRadio } from '@/components/Form/Editors/RadioEditor'
+import { useFormItems, Form, useForm } from '@/lib'
+import { defineComponent, reactive } from 'vue'
 
 export default defineComponent({
   data() {
-    const formVisible: any = {
-      a: '1',
-    }
-    const itemsVisible = useFormItems([
-      //
-      {
-        label: 'a',
-        customRender: () => {
-          return (
-            <a-radio-group v-model={formVisible.a}>
-              <a-radio value="1">显示</a-radio>
-              <a-radio value="2">隐藏</a-radio>
-            </a-radio-group>
-          )
-        },
-      },
-      { label: 'b', visible: () => false },
-    ])
-
     const formItems = [
       //
       { label: 'a' },
@@ -33,7 +15,18 @@ export default defineComponent({
       { label: 'g' },
     ]
 
+    const visibleDemo = useForm({}, [
+      useRadio('', 'a', {
+        options: [
+          { label: '显示', value: '1' },
+          { label: '隐藏', value: '0' },
+        ],
+      }),
+      { label: 'b', visible: (form) => form.a === '1' },
+    ])
+
     const state = {
+      column: 1,
       layoutDemo: useFormItems([
         [{ label: '1/1' }],
         [{ label: '1/2' }, null],
@@ -47,24 +40,35 @@ export default defineComponent({
     return {
       state,
       formItems,
-      formVisible,
-      itemsVisible,
+      visibleDemo,
     }
   },
   render() {
     return (
-      <div class="flex-grow flex flex-col gap-16">
+      <div class="flex-grow flex flex-col gap-12">
         <a-card id="inline-mode" title="行内模式">
           <Form inline items={this.formItems} />
         </a-card>
-        <a-card id="column-1" title="1列">
-          <Form column={1} items={this.formItems} />
+        <a-card id="column-1" title="列的数量">
+          <a-form layout="inline">
+            <a-form-item label="选择列的数量">
+              <a-radio-group v-model={this.state.column}>
+                <a-radio value={1}>1</a-radio>
+                <a-radio value={2}>2</a-radio>
+                <a-radio value={3}>3</a-radio>
+                <a-radio value={4}>4</a-radio>
+                <a-radio value={5}>5</a-radio>
+                <a-radio value={6}>6</a-radio>
+              </a-radio-group>
+            </a-form-item>
+          </a-form>
+          <Form column={this.state.column} items={this.formItems} />
         </a-card>
 
-        <a-card title="控制字段显示状态">
-          <Form column={3} items={this.itemsVisible} />
+        <a-card id="item-visible" title="控制字段显示状态">
+          {this.visibleDemo.render()}
         </a-card>
-        <a-card title="自定义布局">
+        <a-card id="layout" title="自定义布局">
           <Form items={this.state.layoutDemo} />
         </a-card>
       </div>

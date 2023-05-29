@@ -71,12 +71,14 @@ importers:
       vite: ^3.0.2
       vite-plugin-dts: ^2.3.0
       vue: ^2.7.7
+      vue-router: ^3.6.5
       vue-template-compiler: 2.6.0
       vue-tsc: ^0.38.8
     dependencies:
       ant-design-vue: 1.7.8_o5to3tb7gpv5p2xzwghx3ou3wu
       tailwindcss: 3.3.2
       vue: 2.7.14
+      vue-router: 3.6.5_vue@2.7.14
     devDependencies:
       '@rushstack/eslint-patch': 1.2.0
       '@types/node': 16.18.30
@@ -11988,7 +11990,6 @@ packages:
       vue: ^2
     dependencies:
       vue: 2.7.14
-    dev: true
 
   /vue-router/4.2.0_vue@3.3.2:
     resolution: {integrity: sha512-c+usESa6ZoWsm4PPdzRSyenp5A4dsUtnDJnrI03fY1IpIihA9TK3x5ffgkFDpjhLJZewsXoKURapNLFdZjuqTg==}
